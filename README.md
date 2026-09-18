@@ -18,12 +18,39 @@ O projeto consiste no backend de uma aplicação de carteira virtual. Ele permit
 
 ---
 
-## Configuração e Instalação
-### Pré-requisitos
-* **Node.js** (v18 ou superior)
-* **PostgreSQL** rodando na porta padrão `5432`
-* Banco de dados criado com o nome `wallet`
+### 1. Pré-requisitos
+Certifique-se de ter as seguintes ferramentas instaladas:
+* [Node.js](https://nodejs.org/) (versão 18 ou superior).
+* [PostgreSQL](https://www.postgresql.org/) (rodando na porta padrão `5432`).
+* Um cliente para testar rotas, como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/).
 
+### 2. Configuração do Banco de Dados
+1. Abra o seu PostgreSQL.
+2. Crie um banco de dados em branco chamado `wallet`:
+   ```sql
+   CREATE DATABASE wallet;
+   ```
+3. **Importante:** Verifique o arquivo `config/database.js` do projeto e confirme se o usuário e a senha do banco de dados configurados lá batem com os da sua máquina local (geralmente o usuário padrão é `postgres`).
+
+### 3. Instalação das Dependências
+Abra o terminal na pasta raiz do projeto e execute o comando abaixo para baixar o Fastify, Sequelize e demais pacotes:
+```bash
+npm install
+```
+
+### 4. Inicializando a Aplicação
+Com o banco de dados criado e as dependências instaladas, inicie o servidor:
+```bash
+node server.js
+```
+*(Se você configurou o Nodemon no `package.json`, pode usar `npm run dev`).*
+
+### 5. Validação
+Se tudo estiver correto, você verá no terminal as mensagens:
+* `Tabelas sincronizadas` (O Sequelize criou as tabelas `Pessoas` e `Cartaos` automaticamente no banco `wallet`).
+* `Servidor disponível em: http://localhost:3000`.
+
+---
 
 ## Endpoints e Exemplos de Uso (CRUD)
 Abaixo estão os payloads em formato JSON para testar as principais rotas da API em ferramentas como Postman ou Insomnia.
