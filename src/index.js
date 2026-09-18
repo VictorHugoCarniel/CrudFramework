@@ -5,6 +5,8 @@ const sequelize = require('./config/database');
 const Pessoa = require('./models/Pessoa');
 const Cartao = require('./models/Cartao');
 
+fastify.register(require('./routes/Pessoa'));
+fastify.register(require('./routes/Cartao'));
 // Cria a nossa primeira Rota (O Hello World!)
 
 Pessoa.hasMany(Cartao,
@@ -20,13 +22,10 @@ fastify.get('/', async (request, reply) => {
     mensagem: 'Servidor e banco de dados conectados com sucesso!', 
   };
 });
-
-fastify.register(require('./routes/Pessoa'));
-
 // Função principal para ligar o servidor na porta 3000
 const start = async () => {
   try {
-    await sequelize.sync({ alter: true});
+    await sequelize.sync({ force: true });
     /*
     alter: verifica o estado da tabela e se alterou algo faz um alter no banco de dados
     sync: cria a tabela no banco de dados caso não exista, ou seja, sincroniza o modelo com o banco de dados

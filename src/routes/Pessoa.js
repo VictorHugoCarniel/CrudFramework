@@ -3,9 +3,14 @@ const Pessoa = require('../models/Pessoa');
 async function rotasPessoa(fastify, options) {
     fastify.post('/pessoa', async (request, reply) => {
         try {
-            const { nome, sobrenome, apelido, cpf, dataNascimento } = request.body;
-            const pessoa = await Pessoa.create({ nome, sobrenome, apelido, cpf, dataNascimento });
-            reply.code(201).send(pessoa);
+            if (Array.isArray(request.body)) {
+                const pessoas = await Pessoa.bulkCreate(request.body);
+                reply.code(201).send(pessoas);
+            } else {
+                const { nome, sobrenome, apelido, cpf, dataNascimento } = request.body;
+                const pessoa = await Pessoa.create({ nome, sobrenome, apelido, cpf, dataNascimento });
+                reply.code(201).send(pessoa);
+            }
         } catch (error) {
             reply.code(500).send({ error: 'Erro ao criar pessoa' });
         }
