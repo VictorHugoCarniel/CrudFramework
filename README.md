@@ -18,6 +18,46 @@ O projeto consiste no backend de uma aplicação de carteira virtual. Ele permit
 
 ---
 
+## Relatório Técnico (Análise do Framework)
+
+### Breve Apresentação
+* **Node.js:** Um ambiente de execução JavaScript server-side que utiliza uma arquitetura orientada a eventos.
+* **Fastify:** Um framework web focado em altíssima performance e baixo overhead, projetado para ser o mais rápido possível na entrega de rotas e processamento de JSON.
+* **Sequelize:** Um ORM (Object-Relational Mapper) para Node.js que abstrai as interações com o banco de dados usando objetos e classes.
+
+### Principais Características
+* **Arquitetura Não-Bloqueante:** O Node.js e o Fastify operam de forma assíncrona, lidando com múltiplas requisições simultâneas sem travar o servidor.
+* **Sincronização Automática:** O Sequelize permite criar e atualizar tabelas no banco de dados automaticamente através do método `.sync()`.
+* **Respostas Semânticas:** Tratamento de erros personalizados (como retornar HTTP 404 em buscas vazias) nativo nas rotas.
+
+### Vantagens e Desvantagens
+* **Vantagens:**
+  * O Fastify processa requisições significativamente mais rápido que concorrentes como o Express.
+  * O Sequelize aumenta a produtividade ao evitar que o desenvolvedor precise escrever queries SQL manuais, além de prevenir ataques de SQL Injection.
+* **Desvantagens:**
+  * O ecossistema do Fastify, embora crescente, ainda é menor que o do Express (menos plugins de terceiros).
+  * O Node.js é Single-Thread, o que pode ser um gargalo para processamento pesado de CPU.
+
+### Servidores Web Disponíveis
+A aplicação roda nativamente sobre o servidor HTTP/HTTPS interno do Node.js. Em um ambiente de produção real, é comum utilizá-lo em conjunto com:
+* **Ambiente de Desenvolvimento (Atual):** Utilizamos o Node.js em conjunto com o **Nodemon**, que monitora os arquivos e reinicia o servidor automaticamente a cada salvamento, otimizando a produtividade.
+* **Nginx** ou **Apache** atuando como Proxy Reverso.
+* **PM2** para gerenciamento de processos e instâncias.
+* Contêineres **Docker**.
+
+### Tipo de Licença de Software
+* **Node.js, Fastify e Sequelize:** Distribuídos sob a MIT License (software livre e de código aberto).
+* **PostgreSQL:** Distribuído sob a Licença PostgreSQL.
+
+### Responsáveis pelo Desenvolvimento
+* **Node.js:** OpenJS Foundation.
+* **Fastify e Sequelize:** Comunidade Open Source colaborativa.
+
+### Conclusão sobre o Uso do Framework
+A experiência com a stack Fastify + Sequelize mostrou-se altamente produtiva. A configuração inicial do servidor é extremamente limpa, exigindo poucas linhas de código. Encontrar materiais e documentação é muito fácil; as documentações oficiais são excelentes e, por estarem no ecossistema popular do Node.js. A curva de aprendizado inicial do Sequelize compensa rapidamente pela velocidade que entrega no desenvolvimento das operações de CRUD.
+
+---
+
 ### 1. Pré-requisitos
 Certifique-se de ter as seguintes ferramentas instaladas:
 * [Node.js](https://nodejs.org/) (versão 18 ou superior).
