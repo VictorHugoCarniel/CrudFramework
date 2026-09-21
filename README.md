@@ -36,7 +36,6 @@ O projeto consiste no backend de uma aplicação de carteira virtual. Ele permit
   * O Sequelize aumenta a produtividade ao evitar que o desenvolvedor precise escrever queries SQL manuais, além de prevenir ataques de SQL Injection.
 * **Desvantagens:**
   * O ecossistema do Fastify, embora crescente, ainda é menor que o do Express (menos plugins de terceiros).
-  * O Node.js é Single-Thread, o que pode ser um gargalo para processamento pesado de CPU.
 
 ### Servidores Web Disponíveis
 A aplicação roda nativamente sobre o servidor HTTP/HTTPS interno do Node.js. Em um ambiente de produção real, é comum utilizá-lo em conjunto com:
